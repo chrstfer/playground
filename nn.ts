@@ -122,11 +122,11 @@ export class Activations {
   };
   public static SOFTSIGN: ActivationFunction = {
     output: x => x / (1 + (<any>Math).abs(x)),
-    der: x => 1 / Math.pow(1 + (<any>Math).abs(x),2),
+    der: x => 1 / Math.pow(1 + (<any>Math).abs(x),2)
   };
   public static SOFTPLUS: ActivationFunction = {
     output: x => (<any>Math).log(1 + Math.exp(x)),
-    der: x => Activations.SIGMOID.output(x),
+    der: x => Activations.SIGMOID.output(x)
   };
   public static ELU: ActivationFunction = {
     output: x => x < 0 ? (<any>Math).expm1(x) : x,
@@ -134,6 +134,10 @@ export class Activations {
       let output = Activations.ELU.output(x);
       return x < 0 ? output + 1 : 1;
     }
+  };
+  public static BENT: ActivationFunction = {
+    output: x => ((<any>Math).sqrt(x*x + 1) -1)/2 + x,
+    der: x => x / (2*Math.sqrt(x*x+1)) + 1
   };
   public static RELU: ActivationFunction = {
     output: x => Math.max(0, x),

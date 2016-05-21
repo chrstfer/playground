@@ -28,6 +28,7 @@ export let activations: {[key: string]: nn.ActivationFunction} = {
   "linear": nn.Activations.LINEAR,
   "softsign": nn.Activations.SOFTSIGN,
   "softplus": nn.Activations.SOFTPLUS,
+  "bent": nn.Activations.BENT,
   "elu": nn.Activations.ELU
 };
 
