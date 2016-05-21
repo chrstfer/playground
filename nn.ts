@@ -120,6 +120,10 @@ export class Activations {
     output: x => (<any>Math).atan(x),
     der: x => 1 / (x*x + 1)
   };
+  public static SOFTSIGN: ActivationFunction = {
+    output: x => x / (1 + (<any>Math).abs(x)),
+    der: x => 1 / Math.pow(1 + (<any>Math).abs(x),2),
+  };
   public static RELU: ActivationFunction = {
     output: x => Math.max(0, x),
     der: x => x <= 0 ? 0 : 1
