@@ -26,7 +26,9 @@ export let activations: {[key: string]: nn.ActivationFunction} = {
   "arctan": nn.Activations.ARCTAN,
   "sigmoid": nn.Activations.SIGMOID,
   "linear": nn.Activations.LINEAR,
-  "softsign": nn.Activations.SOFTSIGN
+  "softsign": nn.Activations.SOFTSIGN,
+  "softplus": nn.Activations.SOFTPLUS,
+  "elu": nn.Activations.ELU
 };
 
 /** A map between names and regularization functions. */
