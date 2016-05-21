@@ -116,6 +116,10 @@ export class Activations {
       return 1 - output * output;
     }
   };
+  public static ARCTAN: ActivationFunction = {
+    output: x => (<any>Math).atan(x),
+    der: x => 1 / (x*x + 1)
+  };
   public static RELU: ActivationFunction = {
     output: x => Math.max(0, x),
     der: x => x <= 0 ? 0 : 1

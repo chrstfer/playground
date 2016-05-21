@@ -23,6 +23,7 @@ const HIDE_STATE_SUFFIX = "_hide";
 export let activations: {[key: string]: nn.ActivationFunction} = {
   "relu": nn.Activations.RELU,
   "tanh": nn.Activations.TANH,
+  "arctan": nn.Activations.ARCTAN,
   "sigmoid": nn.Activations.SIGMOID,
   "linear": nn.Activations.LINEAR
 };
