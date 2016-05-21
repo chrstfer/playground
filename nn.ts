@@ -111,17 +111,24 @@ export class Errors {
 export class Activations {
   public static ARCTAN: ActivationFunction = {
     output: x => (<any>Math).atan(x),
-    der: x => 1 / (x*x + 1)
+    der: x => 1 / (x * x + 1)
   };
   public static BENT: ActivationFunction = {
-    output: x => ((<any>Math).sqrt(x*x + 1) -1)/2 + x,
-    der: x => x / (2*(<any>Math).sqrt(x*x+1)) + 1
+    output: x => ((<any>Math).sqrt(x * x + 1) - 1) / 2 + x,
+    der: x => x / (2*(<any>Math).sqrt(x * x + 1)) + 1
   };
   public static ELU: ActivationFunction = {
     output: x => x < 0 ? (<any>Math).exp(x) - 1 : x,
     der: x => {
       let output = Activations.ELU.output(x);
       return x < 0 ? output + 1 : 1;
+    }
+  };
+  public static GAUSSIAN: ActivationFunction = {
+    output: x => (<any>Math).exp(-x * x),
+    der: x => {
+      let output = Activations.GAUSSIAN.output(x);
+      return -2 * x * output;
     }
   };
   public static LINEAR: ActivationFunction = {
@@ -139,8 +146,12 @@ export class Activations {
       return output * (1 - output);
     }
   };
+  public static SINUSOID: ActivationFunction = {
+    output: x => (<any>Math).sin(x),
+    der: x => (<any>Math).cos(x)
+  };
   public static SOFTPLUS: ActivationFunction = {
-    output: x => (<any>Math).log(1 + Math.exp(x)),
+    output: x => (<any>Math).log(1 + (<any>Math).exp(x)),
     der: x => Activations.SIGMOID.output(x)
   };
   public static SOFTSIGN: ActivationFunction = {

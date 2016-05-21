@@ -24,9 +24,11 @@ export let activations: {[key: string]: nn.ActivationFunction} = {
   "arctan": nn.Activations.ARCTAN,
   "bent": nn.Activations.BENT,
   "elu": nn.Activations.ELU,
+  "gaussian": nn.Activations.GAUSSIAN,
   "linear": nn.Activations.LINEAR,
   "relu": nn.Activations.RELU,
   "sigmoid": nn.Activations.SIGMOID,
+  "sin": nn.Activations.SINUSOID,
   "softplus": nn.Activations.SOFTPLUS,
   "softsign": nn.Activations.SOFTSIGN,
   "tanh": nn.Activations.TANH
