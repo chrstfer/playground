@@ -21,15 +21,15 @@ const HIDE_STATE_SUFFIX = "_hide";
 
 /** A map between names and activation functions. */
 export let activations: {[key: string]: nn.ActivationFunction} = {
-  "relu": nn.Activations.RELU,
-  "tanh": nn.Activations.TANH,
   "arctan": nn.Activations.ARCTAN,
-  "sigmoid": nn.Activations.SIGMOID,
-  "linear": nn.Activations.LINEAR,
-  "softsign": nn.Activations.SOFTSIGN,
-  "softplus": nn.Activations.SOFTPLUS,
   "bent": nn.Activations.BENT,
-  "elu": nn.Activations.ELU
+  "elu": nn.Activations.ELU,
+  "linear": nn.Activations.LINEAR,
+  "relu": nn.Activations.RELU,
+  "sigmoid": nn.Activations.SIGMOID,
+  "softplus": nn.Activations.SOFTPLUS,
+  "softsign": nn.Activations.SOFTSIGN,
+  "tanh": nn.Activations.TANH
 };
 
 /** A map between names and regularization functions. */

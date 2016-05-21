@@ -109,50 +109,53 @@ export class Errors {
 
 /** Built-in activation functions */
 export class Activations {
+  public static ARCTAN: ActivationFunction = {
+    output: x => (<any>Math).atan(x),
+    der: x => 1 / (x*x + 1)
+  };
+  public static BENT: ActivationFunction = {
+    output: x => ((<any>Math).sqrt(x*x + 1) -1)/2 + x,
+    der: x => x / (2*(<any>Math).sqrt(x*x+1)) + 1
+  };
+  public static ELU: ActivationFunction = {
+    output: x => x < 0 ? (<any>Math).exp(x) - 1 : x,
+    der: x => {
+      let output = Activations.ELU.output(x);
+      return x < 0 ? output + 1 : 1;
+    }
+  };
+  public static LINEAR: ActivationFunction = {
+    output: x => x,
+    der: x => 1
+  };
+  public static RELU: ActivationFunction = {
+    output: x => (<any>Math).max(0, x),
+    der: x => x <= 0 ? 0 : 1
+  };
+  public static SIGMOID: ActivationFunction = {
+    output: x => 1 / (1 + (<any>Math).exp(-x)),
+    der: x => {
+      let output = Activations.SIGMOID.output(x);
+      return output * (1 - output);
+    }
+  };
+  public static SOFTPLUS: ActivationFunction = {
+    output: x => (<any>Math).log(1 + Math.exp(x)),
+    der: x => Activations.SIGMOID.output(x)
+  };
+  public static SOFTSIGN: ActivationFunction = {
+    output: x => x / (1 + (<any>Math).abs(x)),
+    der: x => {
+      let root = 1 / (1 + (<any>Math).abs(x));
+      return root * root;
+    }
+  };
   public static TANH: ActivationFunction = {
     output: x => (<any>Math).tanh(x),
     der: x => {
       let output = Activations.TANH.output(x);
       return 1 - output * output;
     }
-  };
-  public static ARCTAN: ActivationFunction = {
-    output: x => (<any>Math).atan(x),
-    der: x => 1 / (x*x + 1)
-  };
-  public static SOFTSIGN: ActivationFunction = {
-    output: x => x / (1 + (<any>Math).abs(x)),
-    der: x => 1 / Math.pow(1 + (<any>Math).abs(x),2)
-  };
-  public static SOFTPLUS: ActivationFunction = {
-    output: x => (<any>Math).log(1 + Math.exp(x)),
-    der: x => Activations.SIGMOID.output(x)
-  };
-  public static ELU: ActivationFunction = {
-    output: x => x < 0 ? (<any>Math).expm1(x) : x,
-    der: x => {
-      let output = Activations.ELU.output(x);
-      return x < 0 ? output + 1 : 1;
-    }
-  };
-  public static BENT: ActivationFunction = {
-    output: x => ((<any>Math).sqrt(x*x + 1) -1)/2 + x,
-    der: x => x / (2*Math.sqrt(x*x+1)) + 1
-  };
-  public static RELU: ActivationFunction = {
-    output: x => Math.max(0, x),
-    der: x => x <= 0 ? 0 : 1
-  };
-  public static SIGMOID: ActivationFunction = {
-    output: x => 1 / (1 + Math.exp(-x)),
-    der: x => {
-      let output = Activations.SIGMOID.output(x);
-      return output * (1 - output);
-    }
-  };
-  public static LINEAR: ActivationFunction = {
-    output: x => x,
-    der: x => 1
   };
 }
 
