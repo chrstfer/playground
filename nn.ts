@@ -178,7 +178,7 @@ export class Link {
   id: string;
   source: Node;
   dest: Node;
-  weight = Math.random() - 0.5;
+  weight: number;
   /** Error derivative with respect to this weight. */
   errorDer = 0;
   /** Accumulated error derivative since the last update. */
@@ -196,11 +196,12 @@ export class Link {
    *     penalty for this weight. If null, there will be no regularization.
    */
   constructor(source: Node, dest: Node,
-      regularization: RegularizationFunction) {
+      regularization: RegularizationFunction, weight?: number) {
     this.id = source.id + "-" + dest.id;
     this.source = source;
     this.dest = dest;
     this.regularization = regularization;
+    this.weight = weight === undefined ? Math.random() - 0.5 : weight;
   }
 }
 
