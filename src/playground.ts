@@ -312,8 +312,12 @@ function makeGUI() {
 
   let activationDropdown = d3.select("#activations").on("change", function() {
     state.activation = activations[this.value];
+<<<<<<< HEAD:src/playground.ts
     parametersChanged = true;
     reset();
+=======
+    updateActivation();
+>>>>>>> 4c5ecef9ffe9a9970393c5eac730157597b7b92a:playground.ts
   });
   activationDropdown.property("value",
       getKeyFromValue(activations, state.activation));
@@ -926,7 +930,24 @@ export function getOutputWeights(network: nn.Node[][]): number[] {
   return weights;
 }
 
+<<<<<<< HEAD:src/playground.ts
 function reset(onStartup=false) {
+=======
+function setOutputWeights(network: nn.Node[][], weights: number[]){
+  let idx: number = 0;
+  for (let layerIdx = 0; layerIdx < network.length - 1; layerIdx++) {
+    let currentLayer = network[layerIdx];
+    for (let i = 0; i < currentLayer.length; i++) {
+      let node = currentLayer[i];
+      for (let j = 0; j < node.outputs.length; j++) {
+        node.outputs[j].weight = weights[idx++];
+      }
+    }
+  }
+}
+
+function reset() {
+>>>>>>> 4c5ecef9ffe9a9970393c5eac730157597b7b92a:playground.ts
   lineChart.reset();
   state.serialize();
   if (!onStartup) {
@@ -951,6 +972,19 @@ function reset(onStartup=false) {
   drawNetwork(network);
   updateUI(true);
 };
+
+function updateActivation() {
+  state.serialize();
+  let numInputs = constructInput(0 , 0).length;
+  let shape = [numInputs].concat(state.networkShape).concat([1]);
+  let outputActivation = (state.problem == Problem.REGRESSION) ?
+      nn.Activations.LINEAR : nn.Activations.TANH;
+  let weights = getOutputWeights(network);
+  network = nn.buildNetwork(shape, state.activation, outputActivation,
+      state.regularization, constructInputIds());
+  setOutputWeights(network, weights);
+};
+
 
 function initTutorial() {
   if (state.tutorial == null || state.tutorial === '' || state.hideText) {
