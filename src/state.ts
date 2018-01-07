@@ -28,15 +28,10 @@ export let activations: {[key: string]: nn.ActivationFunction} = {
   "linear": nn.Activations.LINEAR,
   "relu": nn.Activations.RELU,
   "sigmoid": nn.Activations.SIGMOID,
-<<<<<<< HEAD:src/state.ts
-  "linear": nn.Activations.LINEAR,
-  "Softplus": nn.Activations.SOFTPLUS
-=======
   "sin": nn.Activations.SINUSOID,
   "softplus": nn.Activations.SOFTPLUS,
   "softsign": nn.Activations.SOFTSIGN,
   "tanh": nn.Activations.TANH
->>>>>>> 4c5ecef9ffe9a9970393c5eac730157597b7b92a:state.ts
 };
 
 /** A map between names and regularization functions. */

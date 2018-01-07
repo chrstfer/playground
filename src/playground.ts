@@ -312,12 +312,7 @@ function makeGUI() {
 
   let activationDropdown = d3.select("#activations").on("change", function() {
     state.activation = activations[this.value];
-<<<<<<< HEAD:src/playground.ts
-    parametersChanged = true;
-    reset();
-=======
     updateActivation();
->>>>>>> 4c5ecef9ffe9a9970393c5eac730157597b7b92a:playground.ts
   });
   activationDropdown.property("value",
       getKeyFromValue(activations, state.activation));
@@ -930,9 +925,6 @@ export function getOutputWeights(network: nn.Node[][]): number[] {
   return weights;
 }
 
-<<<<<<< HEAD:src/playground.ts
-function reset(onStartup=false) {
-=======
 function setOutputWeights(network: nn.Node[][], weights: number[]){
   let idx: number = 0;
   for (let layerIdx = 0; layerIdx < network.length - 1; layerIdx++) {
@@ -946,8 +938,7 @@ function setOutputWeights(network: nn.Node[][], weights: number[]){
   }
 }
 
-function reset() {
->>>>>>> 4c5ecef9ffe9a9970393c5eac730157597b7b92a:playground.ts
+function reset(onStartup=false) {
   lineChart.reset();
   state.serialize();
   if (!onStartup) {

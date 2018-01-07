@@ -112,10 +112,6 @@ export class Errors {
 
 /** Built-in activation functions */
 export class Activations {
-<<<<<<< HEAD:src/nn.ts
-  public static TANH: ActivationFunction = {
-    output: x => (Math as any).tanh(x),
-=======
   public static ARCTAN: ActivationFunction = {
     output: x => (<any>Math).atan(x),
     der: x => 1 / (x * x + 1)
@@ -126,7 +122,6 @@ export class Activations {
   };
   public static ELU: ActivationFunction = {
     output: x => x < 0 ? (<any>Math).exp(x) - 1 : x,
->>>>>>> 4c5ecef9ffe9a9970393c5eac730157597b7b92a:nn.ts
     der: x => {
       let output = Activations.ELU.output(x);
       return x < 0 ? output + 1 : 1;
@@ -176,10 +171,6 @@ export class Activations {
       return 1 - output * output;
     }
   };
-    public static SOFTPLUS: ActivationFunction = {
-	output: x => Math.log(1+x),
-	der: x => 1 / (1+Math.exp(-x)),
-    };
 }
 
 /** Build-in regularization functions */
