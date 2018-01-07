@@ -134,6 +134,10 @@ export class Activations {
     output: x => x,
     der: x => 1
   };
+    public static SOFTPLUS: ActivationFunction = {
+	output: x => Math.log(1+x),
+	der: x => 1 / (1+Math.exp(-x)),
+    };
 }
 
 /** Build-in regularization functions */
